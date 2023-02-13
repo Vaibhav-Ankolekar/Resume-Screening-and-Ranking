@@ -20,9 +20,9 @@ AppliedUsers = mongo.db.AppliedUsers
 # -------------------------- MongoDB Atlas Configuration end ---------------------------- #
 
 # ----------------------------- ML pickel import ----------------------------- #
-extractorObj = pickle.load(open('resumeExtractor.pkl', 'rb'))
-categorizerObj = pickle.load(open('resumeCategorizer.pkl', 'rb'))
-jdResumeComparisionObj = pickle.load(open('jdResumeComparision.pkl', 'rb'))
+extractorObj = pickle.load(open('assets/pickle/resumeExtractor.pkl', 'rb'))
+categorizerObj = pickle.load(open('assets/pickle/resumeCategorizer.pkl', 'rb'))
+jdResumeComparisionObj = pickle.load(open('assets/pickle/jdResumeComparision.pkl', 'rb'))
 # ----------------------------- ML pickel import ----------------------------- #
 
 def getExtension(filename):

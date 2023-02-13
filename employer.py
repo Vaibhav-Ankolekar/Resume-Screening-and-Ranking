@@ -19,7 +19,7 @@ Users = mongo.db.Users
 # --------------------------- Database Collections --------------------------- #
 
 # ----------------------------- ML pickel import ----------------------------- #
-jdExtractorObj = pickle.load(open('jdExtractor.pkl', 'rb'))
+jdExtractorObj = pickle.load(open('assets/pickle/jdExtractor.pkl', 'rb'))
 # ----------------------------- ML pickel import ----------------------------- #
 
 @employer.route('/')
