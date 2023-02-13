@@ -6,7 +6,7 @@ from jdResumeComparision import jdResumeComparision
 if __name__ == "__main__":
 	
 	resumeExtractor = resumeExtractor()
-	data = resumeExtractor.extractData('assets/resume/vaibhav resume.pdf', 'pdf')
+	data = resumeExtractor.extractData('assets/resume/sales resume 2.pdf', 'pdf')
 	resumeData = data[5]
 	
 	jdExtractor = jdExtractor()

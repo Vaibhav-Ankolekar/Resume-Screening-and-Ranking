@@ -66,7 +66,7 @@ class resumeCategorizer:
 		predict_padded = np.array(predict_padded)
 
 		# load mode and make prediction
-		model = keras.models.load_model('assets/new_model/model.h5')
+		model = keras.models.load_model('assets/new_model/model.h5', compile=False)
 		prediction = model.predict(predict_padded)
 
 		# get encoding of top 5 results
