@@ -110,7 +110,8 @@ def show_job():
 			'created_at': 1,
 			'jd_filename': 1,
 			'last_date': 1,
-			'salary': 1
+			'salary': 1,
+			'applied_count': 1
 		}
 	).sort([('created_at', -1)])
 
@@ -139,7 +140,8 @@ def show_job():
 				'jd_filename': job['jd_filename'],
 				'last_date': job['last_date'],
 				'salary': job['salary'],
-				'applied': applied
+				'applied': applied,
+				'applied_count': job['applied_count']
 			}
 			count += 1
 
@@ -147,18 +149,21 @@ def show_job():
 
 @applicant.route('/apply_job', methods=['POST'])
 def apply_job():
-	job_id = request.form['job_id']
-	jd_data = Jobs.find_one(
-		{'_id': ObjectId(job_id)},
-		{'job_description': 1}
-	)
+	
 	emp_data = Resumes.find_one(
 		{'user_id': ObjectId(session['user_id'])},
 		{'resume_data': 1}
 	)
-
 	if emp_data == None:
 		return jsonify({'status_code':400, 'message': 'Please upload resume before applying'})
+
+	
+	job_id = request.form['job_id']
+	jd_data = Jobs.find_one_and_update(
+		{'_id': ObjectId(job_id)},
+		{ '$inc': { 'applied_count': 1 } },
+		{'job_description': 1}
+	)
 
 	match_percentage = jdResumeComparisionObj.match(str(jd_data['job_description']), str(emp_data['resume_data']))
 

@@ -16,6 +16,11 @@
 					<div class="job_card_ds">
 						<p class="job_card_salary"><i class="fas fa-rupee-sign"></i> Salary:  {{ data[i]['salary'] }}</p>
 					    <p class="job_card_date"><i class="far fa-calendar-alt"></i> Expiring on: {{ data[i]['last_date'] }}</p>
+					    <p class="job_card_count">
+							<i class="fa-solid fa-person"></i>
+							Applied Candidates: 
+							<span id="{{ data[i]['job_id'] }}applied_count">{{ data[i]['applied_count'] }}</span>
+						</p>
 					</div>
 					<p class="job_card_buttons">
 						<button onClick="showJD('{{ data[i].jd_filename }}')" class="card_view_details">View</button>
@@ -55,6 +60,7 @@
 			success: function(data) {
 				if (data.status_code == 200) {
 					document.getElementById(job_id).innerHTML = 'Applied';
+					document.getElementById(job_id+'applied_count').innerHTML = parseInt(document.getElementById(job_id+'applied_count').innerHTML) + 1;
 					document.getElementById(job_id).disabled = true;
 					document.getElementById(job_id).className = 'card_apply_job_disabled';
 				}

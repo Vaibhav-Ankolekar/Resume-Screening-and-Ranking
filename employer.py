@@ -50,7 +50,8 @@ def post_job():
 			'created_at': 1,
 			'jd_filename': 1,
 			'last_date': 1,
-			'salary': 1
+			'salary': 1,
+			'applied_count': 1
 		}
 	).sort([('created_at', -1)])
 
@@ -67,7 +68,8 @@ def post_job():
 				'created_at': job['created_at'],
 				'jd_filename': job['jd_filename'],
 				'last_date': job['last_date'],
-				'salary': job['salary']
+				'salary': job['salary'],
+				'applied_count': job['applied_count']
 			}
 			count += 1
 
@@ -89,14 +91,14 @@ def add_job():
 		job_description = jdExtractorObj.extractData(JD_FOLDER + '/' + filename, getExtension(file.filename))
 
 		result = Jobs.insert_one({
-			'job_id': ObjectId(),
 			'job_profile': job_profile,
 			'job_description': job_description,
 			'company_name': company_name,
 			'created_at': datetime.now(),
 			'jd_filename': filename,
 			'last_date': last_date,
-			'salary': salary
+			'salary': salary,
+			'applied_count': 0
 		})
 
 		if result == None:
@@ -139,7 +141,6 @@ def view_applied_candidates():
 	if data == None:
 		return jsonify({'status_code':400, 'message': 'problem in fetching data'})
 	else:
-		
 		result = {}
 		count = 0
 		result[1] = 200
